@@ -4,7 +4,13 @@ import sys
 parent_directory = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(parent_directory))
 
-from helper import manually_get_example, manually_get_input
+from helper import (  # noqa: E402
+    get_example,
+    get_input,
+    is_api_available,
+    manually_get_example,
+    manually_get_input,
+)
 
 DAY = 1
 
@@ -16,7 +22,6 @@ SPAN = DIAL_LIMITS[1] - DIAL_LIMITS[0] + 1
 def first_part(puzzle_input):
     my_dial_position = DIAL_START
     zeroes = 0
-    
     for line in puzzle_input:
         line = line.strip()
         line = [line[0], int(line[1:])]
@@ -61,8 +66,15 @@ def second_part(puzzle_input):
 
 
 def main():
-    example = manually_get_example(DAY)
-    puzzle_input = manually_get_input(DAY)
+    # Use API if available, otherwise use manual file loading
+    if is_api_available():
+        print("Using API to fetch input data...")
+        example = get_example(DAY, part=1)
+        puzzle_input = get_input(DAY)
+    else:
+        print("Using local files for input data...")
+        example = manually_get_example(DAY)
+        puzzle_input = manually_get_input(DAY)
 
     print(f"Example Part 1: {first_part(example)}")
     print(f"puzzle_input Part 1: {first_part(puzzle_input)}")
