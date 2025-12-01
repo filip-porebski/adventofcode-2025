@@ -179,3 +179,7 @@ cython_debug/
 #  refer to https://docs.cursor.com/context/ignore-files
 .cursorignore
 .cursorindexingignore
+
+# Ignore plain-text input/example files (Advent of Code day files)
+# This prevents dayN_input.txt / dayN_example.txt from being committed.
+*.txt
