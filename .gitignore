@@ -183,3 +183,6 @@ cython_debug/
 # Ignore plain-text input/example files (Advent of Code day files)
 # This prevents dayN_input.txt / dayN_example.txt from being committed.
 *.txt
+
+# Secrets and sensitive data
+secret.json
