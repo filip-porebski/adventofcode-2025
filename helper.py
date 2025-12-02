@@ -182,12 +182,12 @@ def _load_secrets() -> dict:
         if path.exists():
             try:
                 # Check file permissions (should not be world-readable)
-                stat_info = path.stat()
-                if stat_info.st_mode & 0o077:  # Check if others/group can read
-                    _logger.warning(
-                        f"Secret file '{path}' has overly permissive permissions. "
-                        "Consider using chmod 600 for security."
-                    )
+                # stat_info = path.stat()
+                # if stat_info.st_mode & 0o077:  # Check if others/group can read
+                #     _logger.warning(
+                #         f"Secret file '{path}' has overly permissive permissions. "
+                #         "Consider using chmod 600 for security."
+                #     )
 
                 with open(path, "r", encoding="utf-8") as file:
                     _secrets_cache = json.load(file)
