@@ -1,14 +1,3 @@
-"""
-Advent of Code 2025 - Day {DAY}: {PROBLEM_TITLE}
-
-{PROBLEM_DESCRIPTION}
-
-Replace the placeholders above with:
-- {DAY}: The day number (e.g., 1, 2, 3, ...)
-- {PROBLEM_TITLE}: A brief title for the problem
-- {PROBLEM_DESCRIPTION}: A description of what the problem is about
-"""
-
 from pathlib import Path
 import sys
 from typing import List
@@ -26,21 +15,10 @@ from helper import (  # noqa: E402
 )
 
 # Constants
-DAY: int = 0  # TODO: Set the day number (1-25)
+DAY: int = 0
 
 
 def solve_part_one(instructions: List[str]) -> int:
-    """
-    Solve Part 1 of the problem.
-
-    Args:
-        instructions: List of input strings (one per line)
-
-    Returns:
-        The solution for Part 1
-
-    TODO: Implement the solution logic for Part 1
-    """
     # TODO: Implement Part 1 solution
     result = 0
 
@@ -52,17 +30,6 @@ def solve_part_one(instructions: List[str]) -> int:
 
 
 def solve_part_two(instructions: List[str]) -> int:
-    """
-    Solve Part 2 of the problem.
-
-    Args:
-        instructions: List of input strings (one per line)
-
-    Returns:
-        The solution for Part 2
-
-    TODO: Implement the solution logic for Part 2
-    """
     # TODO: Implement Part 2 solution
     result = 0
 
@@ -74,14 +41,6 @@ def solve_part_two(instructions: List[str]) -> int:
 
 
 def main() -> None:
-    """
-    Main execution function that loads input data and solves both parts.
-
-    Automatically uses API functions if secret.json is available and valid,
-    otherwise falls back to manual file loading.
-
-    Prints the results for both the example and puzzle input.
-    """
     try:
         # Use API if available, otherwise use manual file loading
         if is_api_available():
