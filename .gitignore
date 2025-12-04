@@ -186,3 +186,20 @@ cython_debug/
 
 # Secrets and sensitive data
 secret.json
+
+# .NET / Visual Studio artifacts
+bin/
+obj/
+.vs/
+*.suo
+*.user
+*.userprefs
+*.csproj.user
+*.pidb
+*.ncrunch*
+*.psess
+*.vsp
+*.vspx
+TestResult*/
+*.exe.config
+*.dll.config

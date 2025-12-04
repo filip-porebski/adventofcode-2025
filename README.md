@@ -6,18 +6,30 @@ This repository contains my solutions for the [Advent of Code 2025](https://adve
 
 ```
 adventofcode-2025/
-├── Day1/              # Day 1 solutions
+├── Day1/                   # Day 1 Python solution
 │   ├── day1_example.txt
 │   ├── day1_input.txt
 │   └── main.py
-├── Template/          # Template for creating new day solutions
+├── Day1CS/                 # Day 1 C# solution (if created)
+│   ├── day1_example.txt
+│   ├── day1_input.txt
+│   ├── Day1CS.csproj
+│   └── Program.cs
+├── Template/               # Python template for new days
 │   ├── main.py
+│   └── README.md
+├── TemplateCS/             # C# template for new days
+│   ├── Program.cs
+│   ├── DayTemplateCS.csproj
 │   ├── day0_example.txt
 │   ├── day0_input.txt
 │   └── README.md
-├── create_day.py      # Script to create new day from template
-├── helper.py          # Utility functions for fetching input and submitting answers
-└── README.md          # This file
+├── Aoc.CommonCS/           # C# helper library (project + AocClient)
+│   ├── AocClient.cs
+│   └── Aoc.CommonCS.csproj
+├── create_day.py           # Script to create new day from Python template
+├── helper.py               # Python utilities for fetching input and submitting answers
+└── README.md
 ```
 
 ## Setup
@@ -29,6 +41,7 @@ adventofcode-2025/
   ```bash
   pip install requests
   ```
+- (Optional) .NET 8 SDK for the C# template
 
 ### Configuration (Optional)
 
@@ -53,18 +66,25 @@ The fastest way to start a new day is using the template:
 # Create Day2 from template
 python3 create_day.py 2
 
+# Create CSharp Day4 from template (creates Day4CS)
+python3 create_day.py 4 --language csharp
+
+# Create both Python and CSharp for Day5
+python3 create_day.py 5 --language both
+
 # This will:
-# - Create Day2/ directory
+# - Create Day<X>/ (Python) when language includes python
+# - Create Day<X>CS/ (C#) when language includes csharp
 # - Copy template files
-# - Set the DAY constant automatically
+# - Set the Day constant automatically
 # - Provide next steps
 ```
 
 Then:
-1. Add your example input to `Day2/day2_example.txt`
-2. Add your puzzle input to `Day2/day2_input.txt`
-3. Update the docstring in `Day2/main.py` with the problem description
-4. Implement `solve_part_one()` and `solve_part_two()`
+1. Add your example input to `Day2/day2_example.txt` (or `Day2CS/day2_example.txt` for C#).
+2. Add your puzzle input to `Day2/day2_input.txt` (or `Day2CS/day2_input.txt` for C#).
+3. Update the docstring in `Day2/main.py` (Python) or adjust comments in `Day2CS/Program.cs` (C#).
+4. Implement `solve_part_one()` / `solve_part_two()` (Python) or `SolvePartOne` / `SolvePartTwo` (C#).
 
 Alternatively, you can manually copy the `Template/` folder and rename it.
 
@@ -87,6 +107,18 @@ The `helper.py` module provides several utility functions:
 - **`get_example(day, part)`**: Fetch example from Advent of Code website (requires `secret.json`)
 - **`submit_answer(day, level, answer)`**: Submit an answer to Advent of Code (requires `secret.json`)
 - **`load_input_from_file(file_name)`**: Load input from a custom file path
+
+## C# Template (Visual Studio friendly)
+
+A C# version of the helper (`Aoc.CommonCS/AocClient.cs`) and a ready-to-copy day template live under `TemplateCS`.
+
+1. Copy `TemplateCS` to `Day<X>CS` (e.g., `Day4CS`).
+2. Rename `DayTemplateCS.csproj` to `Day<X>CS.csproj` if desired.
+3. Rename `day0_example.txt` / `day0_input.txt` to `day<X>_example.txt` / `day<X>_input.txt` and add your data.
+4. Set `Day` in `Program.cs` and implement `SolvePartOne` / `SolvePartTwo`.
+5. Run with `dotnet run --project Day<X>CS/Day<X>CS.csproj` or add the project to a Visual Studio solution.
+
+The `AocClient` helper mirrors the Python utilities: it prefers API calls when `secret.json` or `AOC_COOKIE`/`AOC_YEAR` environment variables are available and falls back to local files, searching both the repo root `Day<day>` / `Day<day>CS` folders and paths beside the executable.
 
 ## Code Style
 
