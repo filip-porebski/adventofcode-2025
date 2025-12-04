@@ -57,8 +57,34 @@ def solve_part_two(instructions: List[str]) -> int:
     result = 0
 
     for line in instructions:
-        # TODO: Process each line
-        pass
+        # collect digits preserving original order
+        digits = [char for char in line if char.isdigit()]
+        if not digits:
+            continue
+
+        k = min(12, len(digits))
+
+        picked: List[str] = []
+        start_index = 0
+        total_digits = len(digits)
+
+        for picks_remaining in range(k, 0, -1):
+            max_pick_index = total_digits - picks_remaining
+            best_digit = None
+            best_digit_index = start_index
+            for idx in range(start_index, max_pick_index + 1):
+                d = digits[idx]
+                if best_digit is None or d > best_digit:
+                    best_digit = d
+                    best_digit_index = idx
+                    if best_digit == '9':
+                        break
+
+            picked.append(best_digit)
+            start_index = best_digit_index + 1
+
+        formed_number = int("".join(picked)) if picked else 0
+        result += formed_number
 
     return result
 
@@ -89,7 +115,6 @@ def main() -> None:
 
         print(f"Part 2 - Example: {example_part2}")
         print(f"Part 2 - Puzzle: {puzzle_part2}")
-        # submit_answer(DAY, part=2, answer=puzzle_part2)
 
     except FileNotFoundError as e:
         print(f"Error: Could not find input file: {e}")
